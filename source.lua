@@ -1828,10 +1828,12 @@ function OrionLib:MakeWindow(WindowConfig)
 			end
 			
 			function ElementFunction:AddMultiDropdown(DropdownConfig)
+				local def = DropdownConfig.Default
+				
 				DropdownConfig = DropdownConfig or {}
 				DropdownConfig.Name = DropdownConfig.Name or "Dropdown"
-				DropdownConfig.Options = {"pen", "lol", "ok", "cool", "goodbye"}
-				DropdownConfig.Default = {"pen", "ok", "lol", "goodbye"}
+				DropdownConfig.Options = DropdownConfig.Options or {"No options"}
+				DropdownConfig.Default = type(def) == "string" and {def} or def
 				DropdownConfig.Callback = DropdownConfig.Callback or function() end
 				DropdownConfig.Flag = DropdownConfig.Flag or nil
 				DropdownConfig.Save = DropdownConfig.Save or false
